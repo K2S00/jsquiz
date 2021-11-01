@@ -61,7 +61,7 @@ let questions = [
     choice4: "-",
     answer: 3,
    },
-]
+];
 const CORRECT_BONUS = 10;
 const MAX_QUESTIONS = 5;
 
@@ -99,6 +99,17 @@ choices.forEach((choice) => {
         acceptingAnswers = false;
         const selectedChoice = e.target;
         const selectedAnswer = selectedChoice.dataset['number'];
+        
+        const classToApply =
+        selectedAnswer == currentQuestion.answer ? "correct" : "incorrect";
+        
+        selectedChoice.parentElement.classList.add(classToApply);
+        setTimeout(() => {
+            selectedChoice.parentElement.classList.remove(classToApply);
+        },1000);
+        selectedChoice.parentElement.classList.add(classToApply);
+
+        
         getNewQuestion();
     });
 });
